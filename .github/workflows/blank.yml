@@ -1,0 +1,10 @@
+sudo apt-get install -y build-essential git zip unzip libio-compress-perl fakeroot perl clang-6.0 libplist-utils
+
+echo export THEOS="~/theos" >> ~/.bashrc
+echo export PATH="\$THEOS/bin:\$PATH" >> ~/.bashrc
+echo alias theos="\$THEOS/bin/nic.pl" >> ~/.bashrc
+echo "umask 0022" >> ~/.bashrc
+source ~/.bashrc
+
+sudo git clone --recursive https://github.com/theos/theos.git $THEOS
+curl https://kabiroberai.com/toolchain/download.php?toolchain=ios-linux -Lo toolchain.tar.gz && tar xzf toolchain.tar.gz -C $THEOS/toolchain && rm toolchain.tar.gz && sudo rm -rf $THEOS/sdks/ && sudo git clone https://github.com/theos/sdks $THEOS/sdks
